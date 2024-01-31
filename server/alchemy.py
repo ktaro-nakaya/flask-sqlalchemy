@@ -1,4 +1,4 @@
-from flask import (Flask, Blueprint, jsonify)
+from flask import (Blueprint, jsonify)
 from sqlalchemy import create_engine, URL
 from sqlalchemy.orm import sessionmaker, scoped_session, DeclarativeBase, Mapped, mapped_column
 
