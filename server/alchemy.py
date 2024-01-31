@@ -1,7 +1,6 @@
 from flask import (Flask, Blueprint, jsonify)
-from sqlalchemy import create_engine, URL, Column
+from sqlalchemy import create_engine, URL
 from sqlalchemy.orm import sessionmaker, scoped_session, DeclarativeBase, Mapped, mapped_column
-from sqlalchemy.types import Integer, String
 
 
 # 接続情報
@@ -28,10 +27,14 @@ session = scoped_session(sessionmaker(
 bp_alchemy = Blueprint(__name__, 'bp_alchemy', url_prefix='/api/alchemy')
 
 # マッピングするベースクラスを定義
+
+
 class Base(DeclarativeBase):
     pass
 
 # マッピングするクラスを定義
+
+
 class Item(Base):
     __tablename__ = "items"
     id: Mapped[int] = mapped_column(primary_key=True)
@@ -43,7 +46,7 @@ class Item(Base):
 def get_all():
     # 全件検索
     all_data = session.query(Item).all()
-    
+
     # 検索結果をdict型に変換
     result = [{'id': item.id, 'name': item.name, 'price': item.price}
               for item in all_data]
